@@ -15,10 +15,11 @@ class myHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type','text/html')
         self.end_headers()
         # Send the html message
-        self.wfile.write("--------Hello World !")
+        self.wfile.write("--------Hello World !".encode())
         return
         
     def do_POST(self):
+        #message = '\n'.join(['client_address=%s (%s)' % (self.client_address, self.address_string()).encode(),'command=%s' % self.command.encode(),'path=%s' % self.path.encode(), '',])
         print("~~~~~~~~~~~~~~~~~~~~~~~~~ do_POST")
         time.sleep(5)
         print("~~~~~~~~~~~~~~~~~~~~~~~~~ do_POST after sleep")
@@ -26,7 +27,7 @@ class myHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type','text/html')
         self.end_headers()
         # Send the html message
-        self.wfile.write("--------Hello World !")
+        self.wfile.write("hello".encode())
         return
 
 with socketserver.TCPServer(("", PORT), myHandler) as httpd:
